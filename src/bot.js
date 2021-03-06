@@ -3,7 +3,7 @@ const { config } = require('./config');
 
 const bot = new Discord.Client();
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
     await bot.user.setPresence({
         activity: {
             name: `Bora jogar Ragnarok!!!`,
