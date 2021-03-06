@@ -11,7 +11,6 @@ bot.on('ready', async () => {
             url: "https://twitch.tv/bravanzin",
         },
     });
-    users(bot.guilds.cache.get(config.channels.guild));
     console.log("[Bot] Connected");
 })
 
