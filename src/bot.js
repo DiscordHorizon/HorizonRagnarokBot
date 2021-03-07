@@ -14,4 +14,8 @@ bot.on('ready', async () => {
     console.log("[Bot] Connected");
 });
 
+bot.on('message', async (message) => {
+    if (message.author.bot) return;
+})
+
 bot.login(config.tokens.discord);
