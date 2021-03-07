@@ -8,5 +8,6 @@ try {
 exports.config = {
     tokens: {
         discord: config ? config.discord : process.env.DISCORD,
+        mongoUri : config ? config.mongoUri : process.env.MONGO_URI,
     }
 }
