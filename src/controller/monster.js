@@ -79,7 +79,12 @@ function sendMonster(message, monster) {
 
     monster.info.drops.forEach((drop) => {
         if (drop.MVPDrop && !isMvp) {
-            monsterCard.addFields({
+            monsterCard.addFields(
+                {
+                    name: '\u200b',
+                    value: '\u200b'
+                },
+                {
                 name: "MVP drops",
                 value: 'Itens dropados considerados "MVP drops"',
             });
