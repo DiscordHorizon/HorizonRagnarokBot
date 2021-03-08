@@ -6,11 +6,10 @@ module.exports = {
         await monsterModel.find({} , (err, monster) => {
             monsters.push(monster);
         });
-        if (command === 'info') {
-            this.getMonsterInfo(message, search);
-        }
     },
-    async getMonsterInfo(message, search) {
-        console.log(monsters.find(search));
-    },
-};
+    async monsterInfo(message, search) {
+        await monsterModel.find({}, (err, monster) => {
+            if (monster.id === search) console.log(monster);
+        })
+    }
+}
