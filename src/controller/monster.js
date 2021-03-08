@@ -4,7 +4,17 @@ const { MessageEmbed } = require('discord.js');
 function sendMonster(message, monster) {
     const monsterCard = new MessageEmbed()
         .setTitle(monster.name.ptBr)
-        .setThumbnail(monster.info.gif);
+        .setDescription(monster.name.en)
+        .setThumbnail(monster.info.gif)
+        .setColor("3498DB")
+        .addFields(
+            {
+                name: 'HP',
+                value: monster.info.hp,
+                inline: true
+            }
+        )
+        .setFooter('RagnarokBot by Bravan')
     message.channel.send(monsterCard);
 }
 
