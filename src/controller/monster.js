@@ -69,13 +69,22 @@ function sendMonster(message, monster) {
             },
             {
                 name: "Drops",
-                value: "\u200b",
+                value: "Itens dropados pelo monstro",
             }
         )
         .setTimestamp(new Date())
         .setFooter("RagnarokBot by Bravan");
 
+    let isMvp = false;
+
     monster.info.drops.forEach((drop) => {
+        if (drop.MVPDrop && !isMvp) {
+            monsterCard.addFields({
+                name: "MVP drops",
+                value: 'Itens dropados considerados "MVP drops"',
+            });
+            isMvp = !isMvp;
+        }
         monsterCard.addField(drop.name, drop.rate + "%", true);
     });
 
