@@ -14,7 +14,7 @@ module.exports = {
         });
     },
     async monsterSearch(message, search) {
-        const sendMessage = await message.channel.send('Processando...');
+        const sendMessage = await message.channel.send(new MessageEmbed().setTitle('Processando...'));
         let searchsIds = [];
         await monsterModel.find({}, (err, monsters) => {
             monsters.forEach((monster) => {
