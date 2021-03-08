@@ -2,7 +2,7 @@ const monsterModel = require("../models/monster");
 
 module.exports = {
     async getMonsters() {
-        const monsters = await monsterModel.listIndexes();
+        const monsters = await monsterModel;
         console.log(monsters);
     },
     async getMonsterInfo(search) {
