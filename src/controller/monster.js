@@ -2,8 +2,17 @@ const monsterModel = require("../models/monster");
 const { MessageEmbed } = require("discord.js");
 const { monsterInfo } = require('../include/monsterInfo');
 
-async function listMonsters(message, monsters) {
-
+async function listMonsters(message, monsters, search) {
+    const monstersCard = new MessageEmbed()
+            .setTitle("Monstros")
+            .setDescription(`Lista de monstros que contém: \`${search}\` no nome`)
+        monsters.forEach(id => {
+            const monster = await monsterModel.findOne({ id: id });
+            monstersCard.addField(monster.name.ptBr, monster.name.en);
+        })
+            .setTimestamp(new Date())
+            .setFooter("RagnarokBot by Bravan");
+        message.edit(monstersCard);
 }
 
 module.exports = {
@@ -37,7 +46,11 @@ module.exports = {
                 }
             });
             if (searchsIds.length) {
-                listMonsters(sendMessage, searchsIds);
+                if (searchsIds.length === 1) {
+                    const monsterInfo = monsterModel.findOne({ id: searchsIds[0]});
+                    monsterInfo(sendMessage, monsterInfo);
+                }
+                listMonsters(sendMessage, searchsIds, search);
             }
         });
     },
