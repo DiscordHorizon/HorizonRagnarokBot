@@ -29,11 +29,10 @@ bot.on('message', async (message) => {
         args = args + " " + arg[0];
         arg.shift();
     }
-    args.toLocaleLowerCase();
 
     //* executar comando
     if (command === 'mi') {
-        monsterSearch(message, args);
+        monsterSearch(message, args.toLocaleLowerCase());
     }
 })
 
