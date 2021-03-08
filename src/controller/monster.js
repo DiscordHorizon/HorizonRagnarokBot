@@ -8,15 +8,9 @@ function sendMonster(message, monster) {
         .setThumbnail(monster.info.gif)
         .setColor("3498DB");
     if (monster.info.outros.boss) {
-        monsterCard.addField({
-            name: "Monstro",
-            value: "MVP ou miniboss",
-        });
+        monsterCard.addField("Monstro", "MVP ou miniboss");
     } else {
-        monsterCard.addField({
-            name: "Monstro",
-            value: "Normal",
-        });
+        monsterCard.addField("Monstro", "Normal");
     }
     monsterCard
         .addFields(
@@ -70,24 +64,21 @@ function sendMonster(message, monster) {
                 inline: true,
             },
             {
-                name: "\200b",
-                value: "\200b",
+                name: "\u200b",
+                value: "\u200b",
             },
             {
-                name: 'Drops',
-                value: "\u200b"
+                name: "Drops",
+                value: "\u200b",
             }
         )
         .setTimestamp(new Date())
         .setFooter("RagnarokBot by Bravan");
 
-        monster.info.drops.forEach(drop => {
-            monsterCard.addField({
-                name: drop.name,
-                value: drop.rate + '%'
-            });
-        });
-        
+    monster.info.drops.forEach((drop) => {
+        monsterCard.addField(drop.name, drop.rate + "%", true);
+    });
+
     message.channel.send(monsterCard);
 }
 
