@@ -13,17 +13,17 @@ module.exports = {
                 const monsterNameBr = monster.name.ptBr.toLowerCase();
                 const monsterNameEn = monster.name.en.toLowerCase();
                 if (monster.id == search) {
-                    monsterInfo = !monsterFound;
+                    monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
                     return false;
                 }
                 if (monsterNameBr.includes(search)) {
-                    monsterInfo = !monsterFound;
+                    monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
                     return false;
                 }
                 if (monsterNameEn.includes(search)) {
-                    monsterInfo = !monsterFound;
+                    monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
                     return false;
                 }
