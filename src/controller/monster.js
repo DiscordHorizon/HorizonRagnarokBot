@@ -8,7 +8,7 @@ function sendMonster(message, monster) {
         .setThumbnail(monster.info.gif)
         .setColor("3498DB");
     if (monster.info.outros.boss) {
-        monsterCard.addField("\u200b", "MVP/miniboss");
+        monsterCard.addField("MVP/miniboss", "\u200b");
     }
     monsterCard
         .addFields(
