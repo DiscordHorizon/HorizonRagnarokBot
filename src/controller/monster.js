@@ -15,6 +15,10 @@ function sendMonster(message, monster) {
     monsterCard
         .addFields(
             {
+                name: "Elemento recomendado",
+                value: "Ainda nao implementado"
+            },
+            {
                 name: "Raça",
                 value: monster.info.atributos.race,
                 inline: true,
@@ -28,10 +32,6 @@ function sendMonster(message, monster) {
                 name: "Tamanho",
                 value: monster.info.atributos.size,
                 inline: true,
-            },
-            {
-                name: "Elemento recomendado",
-                value: "Ainda nao implementado"
             },
             {
                 name: "Hp",
