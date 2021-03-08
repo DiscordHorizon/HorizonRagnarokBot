@@ -26,14 +26,14 @@ module.exports = {
                     monsterInfo(sendMessage, monster);
                 }
             });
+            if (!monsterFound) {
+                sendMessage.edit(
+                    new MessageEmbed()
+                        .setTitle("Nenhum monstro encontrado.")
+                        .setTimestamp(Date.now())
+                        .setFooter("RagnarokBot by Bravan")
+                );
+            }
         });
-        if (!monsterFound) {
-            sendMessage.edit(
-                new MessageEmbed()
-                    .setTitle("Nenhum monstro encontrado.")
-                    .setTimestamp(Date.now())
-                    .setFooter("RagnarokBot by Bravan")
-            );
-        }
     },
 };
