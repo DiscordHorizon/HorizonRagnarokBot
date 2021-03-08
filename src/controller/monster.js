@@ -9,7 +9,7 @@ async function getMonsters() {
 getMonsters();
 
 module.exports = {
-    async getMonsterInfo(search) {
+    async getMonsterInfo(message, search) {
         console.log(monsters.find(search));
     },
 };
