@@ -27,8 +27,8 @@ const Monster = Schema({
             size: String,
         },
         drops: Array,
-        skills: String,
-        respawn: Array,
+        respawn: String,
+        gif: String,
         outros: {
             agressive: Boolean,
             helpAllies: Boolean,
