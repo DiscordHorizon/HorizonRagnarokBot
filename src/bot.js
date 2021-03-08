@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { config } = require('./config');
-const { getMonsters, monsterInfo } = require('./controller/monster');
+const { getMonsters, monsterSearch } = require('./controller/monster');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -32,7 +32,7 @@ bot.on('message', async (message) => {
 
     //* executar comando
     if (command === 'mi') {
-        monsterInfo(message, args);
+        monsterSearch(message, args);
     }
 })
 
