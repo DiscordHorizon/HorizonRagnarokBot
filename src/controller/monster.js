@@ -10,6 +10,7 @@ module.exports = {
         );
         await monsterModel.find({}, (err, monsters) => {
             monsters.every((monster) => {
+                if (monsterFound) return false;
                 const monsterNameBr = monster.name.ptBr.toLowerCase();
                 const monsterNameEn = monster.name.en.toLowerCase();
                 if (monster.id == search) {
