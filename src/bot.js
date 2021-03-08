@@ -1,22 +1,10 @@
 const Discord = require('discord.js');
-const fs = require("fs");
 const { config } = require('./config');
+const { getMonsterInfo } = require('./controller/monster');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 
-//* ler comandos da pasta "commands"
-fs.readdir("./commands/", (err, files) => {
-    if (err) {
-        console.log(err);
-    }
-    let commandjs = files.filter((f) => f.split(".").pop() == "js");
-    commandjs.forEach((f, i) => {
-        let props = require(`./commands/${f}`);
-        console.log(`[Command] Comando ${f} carregado com sucesso.`);
-        bot.commands.set(props.info.name, props);
-    });
-});
 
 bot.on('ready', async () => {
     await bot.user.setPresence({
@@ -41,11 +29,10 @@ bot.on('message', async (message) => {
         args = args + " " + arg[0];
         arg.shift();
     }
-    
+
     //* executar comando
-    const commandcmd = bot.commands.get(command);
-    if (commandcmd) {
-        commandcmd.run(bot, message, args);
+    if (command === 'info') {
+        getMonsterInfo(message, args);
     }
 })
 
