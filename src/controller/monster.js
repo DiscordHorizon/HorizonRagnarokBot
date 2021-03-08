@@ -9,24 +9,21 @@ module.exports = {
             new MessageEmbed().setTitle("Processando...")
         );
         await monsterModel.find({}, (err, monsters) => {
-            monsters.every((monster) => {
-                if (monsterFound) return false;
+            monsters.forEach((monster) => {
+                if (monsterFound) return;
                 const monsterNameBr = monster.name.ptBr.toLowerCase();
                 const monsterNameEn = monster.name.en.toLowerCase();
                 if (monster.id == search) {
                     monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
-                    return false;
                 }
                 if (monsterNameBr.includes(search)) {
                     monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
-                    return false;
                 }
                 if (monsterNameEn.includes(search)) {
                     monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
-                    return false;
                 }
             });
         });
