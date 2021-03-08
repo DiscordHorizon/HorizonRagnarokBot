@@ -31,7 +31,7 @@ bot.on('message', async (message) => {
     }
 
     //* executar comando
-    if (command === 'info') {
+    if (command === 'mi') {
         monsterInfo(message, args);
     }
 })
