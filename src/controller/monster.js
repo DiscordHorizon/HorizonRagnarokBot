@@ -1,23 +1,15 @@
 const monsterModel = require("../models/monster");
 
+async function getMonsters() {
+    var monsters = [];
+    await monsterModel.find({} , (err, monster) => {
+        monsters.push(monster);
+    });
+}
+getMonsters();
+
 module.exports = {
-    async getMonsters() {
-        const monsters = await monsterModel;
-        console.log(monsters);
-    },
     async getMonsterInfo(search) {
-        try {
-            const monster = await monsterModel.findOne({ id: search });
-        } catch (error) {
-            try {
-                const monster = await monsterModel.findOne({
-                    name: { ptBr: search },
-                });
-            } catch (error) {
-                const monster = await monsterModel.findOne({
-                    name: { en: search },
-                });
-            }
-        }
+        console.log(monsters.find(search));
     },
 };
