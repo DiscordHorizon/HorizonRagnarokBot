@@ -9,13 +9,11 @@ function sendMonster(message, monster) {
         .setColor("3498DB");
     if (monster.info.outros.boss) {
         monsterCard.addField("MVP/miniboss", "\u200b");
+    } else {
+        monsterCard.addField("\u200b", "\u200b");
     }
     monsterCard
         .addFields(
-            {
-                name: "\u200b",
-                value: "\u200b",
-            },
             {
                 name: "Raça",
                 value: monster.info.atributos.race,
@@ -32,8 +30,8 @@ function sendMonster(message, monster) {
                 inline: true,
             },
             {
-                name: "\u200b",
-                value: "\u200b",
+                name: "Elemento recomendado",
+                value: "Ainda nao implementado"
             },
             {
                 name: "Hp",
