@@ -8,12 +8,14 @@ function sendMonster(message, monster) {
         .setThumbnail(monster.info.gif)
         .setColor("3498DB");
     if (monster.info.outros.boss) {
-        monsterCard.addField("Monstro", "MVP ou miniboss");
-    } else {
-        monsterCard.addField("Monstro", "Normal");
+        monsterCard.addField("\u200b", "MVP/miniboss");
     }
     monsterCard
         .addFields(
+            {
+                name: "\u200b",
+                value: "\u200b",
+            },
             {
                 name: "Raça",
                 value: monster.info.atributos.race,
@@ -81,13 +83,14 @@ function sendMonster(message, monster) {
         if (drop.MVPDrop && !isMvp) {
             monsterCard.addFields(
                 {
-                    name: '\u200b',
-                    value: '\u200b'
+                    name: "\u200b",
+                    value: "\u200b",
                 },
                 {
-                name: "MVP drops",
-                value: 'Itens dropados considerados "MVP drops"',
-            });
+                    name: "MVP drops",
+                    value: 'Itens dropados considerados "MVP drops"',
+                }
+            );
             isMvp = !isMvp;
         }
         monsterCard.addField(drop.name, drop.rate + "%", true);
