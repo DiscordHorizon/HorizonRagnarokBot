@@ -1,100 +1,9 @@
 const monsterModel = require("../models/monster");
 const { MessageEmbed } = require("discord.js");
+const { monsterInfo } = require('../include/monsterInfo');
 
-function sendMonster(message, monster) {
-    const monsterCard = new MessageEmbed()
-        .setTitle(monster.name.ptBr)
-        .setDescription(monster.name.en)
-        .setThumbnail(monster.info.gif)
-        .setColor("3498DB");
-    if (monster.info.outros.boss) {
-        monsterCard.addField("MVP/miniboss", "\u200b");
-    } else {
-        monsterCard.addField("\u200b", "\u200b");
-    }
-    monsterCard
-        .addFields(
-            {
-                name: "Elemento recomendado",
-                value: "Ainda nao implementado"
-            },
-            {
-                name: "Raça",
-                value: monster.info.atributos.race,
-                inline: true,
-            },
-            {
-                name: "Elemento",
-                value: monster.info.atributos.element,
-                inline: true,
-            },
-            {
-                name: "Tamanho",
-                value: monster.info.atributos.size,
-                inline: true,
-            },
-            {
-                name: "Hp",
-                value: monster.info.atributos.hp,
-                inline: true,
-            },
-            {
-                name: "Exp de base",
-                value: monster.info.atributos.baseExp,
-                inline: true,
-            },
-            {
-                name: "Exp de Classe",
-                value: monster.info.atributos.jobExp,
-                inline: true,
-            },
-            {
-                name: "Ataque",
-                value: monster.info.atributos.atk,
-                inline: true,
-            },
-            {
-                name: "Defesa",
-                value: monster.info.atributos.def,
-                inline: true,
-            },
-            {
-                name: "Defesa Mágica",
-                value: monster.info.atributos.mdef,
-                inline: true,
-            },
-            {
-                name: "\u200b",
-                value: "\u200b",
-            },
-            {
-                name: "Drops",
-                value: "Itens dropados pelo monstro",
-            }
-        )
-        .setTimestamp(new Date())
-        .setFooter("RagnarokBot by Bravan");
+async function listMonsters(message, monsters) {
 
-    let isMvp = false;
-
-    monster.info.drops.forEach((drop) => {
-        if (drop.MVPDrop && !isMvp) {
-            monsterCard.addFields(
-                {
-                    name: "\u200b",
-                    value: "\u200b",
-                },
-                {
-                    name: "MVP drops",
-                    value: 'Itens dropados considerados "MVP drops"',
-                }
-            );
-            isMvp = !isMvp;
-        }
-        monsterCard.addField(drop.name, drop.rate + "%", true);
-    });
-
-    message.channel.send(monsterCard);
 }
 
 module.exports = {
@@ -104,13 +13,32 @@ module.exports = {
             monsters.push(monster);
         });
     },
-    async monsterInfo(message, search) {
+    async monsterSearch(message, search) {
+        const sendMessage = await message.channel.send('Processando...');
+        let searchsIds = [];
         await monsterModel.find({}, (err, monsters) => {
             monsters.forEach((monster) => {
+                const monsterNameBr = monster.name.ptBr.toLowerCase();
+                const monsterNameEn = monster.name.en.toLowerCase();
                 if (monster.id == search) {
-                    sendMonster(message, monster);
+                    return monsterInfo(sendMessage, monster);
+                }
+                if (monsterNameBr === search) {
+                    return monsterInfo(sendMessage, monster);
+                }
+                if (monsterNameEn === search) {
+                    return monsterInfo(sendMessage, monster);
+                }
+                if (monsterNameBr.includes(search)) {
+                    searchsIds.push(monster.id);
+                }
+                if (monsterNameEn.includes(search)) {
+                    searchsIds.push(monster.id);
                 }
             });
+            if (searchsIds.length) {
+                listMonsters(sendMessage, searchsIds);
+            }
         });
     },
 };
