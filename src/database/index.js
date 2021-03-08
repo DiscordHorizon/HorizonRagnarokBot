@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { config } = require('../config');
+const { config } = require("../config");
 
 mongoose
     .connect(config.tokens.mongoUri, {
@@ -7,5 +7,4 @@ mongoose
         useNewUrlParser: true,
         useFindAndModify: false,
     })
-    .then(console.log("[Database] connected"))
-    .catch((err) => console.log(err));
+    .then(console.log("[Database] connected"));
