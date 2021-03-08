@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { config } = require('./config');
-const { getMonsters } = require('./controller/monster');
+const { getMonsters, monsterInfo } = require('./controller/monster');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -31,7 +31,9 @@ bot.on('message', async (message) => {
     }
 
     //* executar comando
-    getMonsters(message, args, command);
+    if (command === 'info') {
+        monsterInfo(message, args);
+    }
 })
 
 bot.login(config.tokens.discord);
