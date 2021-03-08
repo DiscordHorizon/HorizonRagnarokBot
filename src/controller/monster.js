@@ -6,12 +6,20 @@ function sendMonster(message, monster) {
         .setTitle(monster.name.ptBr)
         .setDescription(monster.name.en)
         .setThumbnail(monster.info.gif)
-        .setColor("3498DB")
+        .setColor("3498DB");
+    if (monster.info.outros.boss) {
+        monsterCard.addField({
+            name: "Monstro",
+            value: "MVP ou miniboss",
+        });
+    } else {
+        monsterCard.addField({
+            name: "Monstro",
+            value: "Normal",
+        });
+    }
+    monsterCard
         .addFields(
-            {
-                name: "\u200b",
-                value: "\u200b",
-            },
             {
                 name: "Raça",
                 value: monster.info.atributos.race,
@@ -47,10 +55,6 @@ function sendMonster(message, monster) {
                 inline: true,
             },
             {
-                name: "\u200b",
-                value: "\u200b",
-            },
-            {
                 name: "Ataque",
                 value: monster.info.atributos.atk,
                 inline: true,
@@ -64,10 +68,26 @@ function sendMonster(message, monster) {
                 name: "Defesa Mágica",
                 value: monster.info.atributos.mdef,
                 inline: true,
+            },
+            {
+                name: "\200b",
+                value: "\200b",
+            },
+            {
+                name: 'Drops',
+                value: "\u200b"
             }
         )
         .setTimestamp(new Date())
         .setFooter("RagnarokBot by Bravan");
+
+        monster.info.drops.forEach(drop => {
+            monsterCard.addField({
+                name: drop.name,
+                value: drop.rate + '%'
+            });
+        });
+        
     message.channel.send(monsterCard);
 }
 
