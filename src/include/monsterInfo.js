@@ -94,6 +94,21 @@ module.exports = {
             monsterCard.addField(drop.name, drop.rate + "%", true);
         });
 
+        monsterCard.addFields(
+            {
+                name: "\u200b",
+                value: "\u200b",
+            },
+            {
+                name: "Respawn",
+                value: "Mapas onde o monstro renasce",
+            },
+            {
+                name: "\u200b",
+                value: monster.info.respawn,
+            }
+        );
+
         message.edit(monsterCard);
     },
 };
