@@ -1,9 +1,10 @@
 const { MessageEmbed } = require("discord.js");
+const { rates } = require('../config').config;
 
 module.exports = {
     monsterInfo(message, monster) {
         const monsterCard = new MessageEmbed()
-            .setTitle(monster.name.ptBr)
+            .setTitle(monster.name.ptBr + ' #' + monster.id)
             .setDescription(monster.name.en)
             .setThumbnail(monster.info.gif)
             .setColor("3498DB");
@@ -40,12 +41,12 @@ module.exports = {
                 },
                 {
                     name: "Exp de base",
-                    value: monster.info.atributos.baseExp,
+                    value: monster.info.atributos.baseExp * rates.base,
                     inline: true,
                 },
                 {
                     name: "Exp de Classe",
-                    value: monster.info.atributos.jobExp,
+                    value: monster.info.atributos.jobExp * rates.job,
                     inline: true,
                 },
                 {
@@ -91,7 +92,11 @@ module.exports = {
                 );
                 isMvp = !isMvp;
             }
-            monsterCard.addField(drop.name, drop.rate + "%", true);
+            if (isMvp) {
+                monsterCard.addField(drop.name, drop.rate * rates.bossDrop + "%", true);    
+            } else {
+                monsterCard.addField(drop.name, drop.rate * rates.drop + "%", true);
+            }
         });
 
         monsterCard.addFields(
