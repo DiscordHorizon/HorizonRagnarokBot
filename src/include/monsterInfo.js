@@ -1,10 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { rates } = require('../config').config;
+const { rates } = require("../config").config;
 
 module.exports = {
     monsterInfo(message, monster) {
         const monsterCard = new MessageEmbed()
-            .setTitle(monster.name.ptBr + ' #' + monster.id)
+            .setTitle(monster.name.ptBr + " #" + monster.id)
             .setDescription(monster.name.en)
             .setThumbnail(monster.info.gif)
             .setColor("3498DB");
@@ -93,9 +93,19 @@ module.exports = {
                 isMvp = !isMvp;
             }
             if (isMvp) {
-                monsterCard.addField(drop.name, drop.rate * rates.bossDrop + "%", true);    
+                const dropRate = drop.rate * rates.bossDrop;
+                if (dropRate >= 100) {
+                    monsterCard.addField(drop.name, "100%", true);
+                } else {
+                    monsterCard.addField(drop.name, dropRate + "%", true);
+                }
             } else {
-                monsterCard.addField(drop.name, drop.rate * rates.drop + "%", true);
+                const dropRate = drop.rate * rates.bossDrop;
+                if (dropRate >= 100) {
+                    monsterCard.addField(drop.name, "100%", true);
+                } else {
+                    monsterCard.addField(drop.name, dropRate + "%", true);
+                }
             }
         });
 
