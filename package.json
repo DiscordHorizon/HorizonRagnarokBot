@@ -20,6 +20,7 @@
   "homepage": "https://github.com/MatheusIshiyama/discordRagnarokBot#readme",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "express": "^4.17.1",
     "mongoose": "^5.11.19"
   }
 }
