@@ -25,6 +25,11 @@ module.exports = {
                     monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
+            });
+            monsters.forEach((monster) => {
+                if (monsterFound) return;
+                const monsterNameBr = monster.name.ptBr.toLowerCase();
+                const monsterNameEn = monster.name.en.toLowerCase();
                 if (monsterNameBr.includes(search)) {
                     monsterFound = true;
                     monsterInfo(sendMessage, monster);
