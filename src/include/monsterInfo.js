@@ -100,7 +100,7 @@ module.exports = {
                     monsterCard.addField(drop.name, dropRate + "%", true);
                 }
             } else {
-                const dropRate = drop.rate * rates.bossDrop;
+                const dropRate = drop.rate * rates.drop;
                 if (dropRate >= 100) {
                     monsterCard.addField(drop.name, "100%", true);
                 } else {
