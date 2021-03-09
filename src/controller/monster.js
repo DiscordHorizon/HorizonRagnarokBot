@@ -17,6 +17,14 @@ module.exports = {
                     monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
                 }
+                if (monsterNameBr === search) {
+                    monsterFound = !monsterFound;
+                    monsterInfo(sendMessage, monster);
+                }
+                if (monsterNameEn === search) {
+                    monsterFound = !monsterFound;
+                    monsterInfo(sendMessage, monster);
+                }
                 if (monsterNameBr.includes(search)) {
                     monsterFound = !monsterFound;
                     monsterInfo(sendMessage, monster);
