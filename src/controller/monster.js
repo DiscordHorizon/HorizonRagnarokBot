@@ -14,23 +14,23 @@ module.exports = {
                 const monsterNameBr = monster.name.ptBr.toLowerCase();
                 const monsterNameEn = monster.name.en.toLowerCase();
                 if (monster.id == search) {
-                    monsterFound = !monsterFound;
+                    monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
                 if (monsterNameBr === search) {
-                    monsterFound = !monsterFound;
+                    monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
                 if (monsterNameEn === search) {
-                    monsterFound = !monsterFound;
+                    monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
                 if (monsterNameBr.includes(search)) {
-                    monsterFound = !monsterFound;
+                    monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
                 if (monsterNameEn.includes(search)) {
-                    monsterFound = !monsterFound;
+                    monsterFound = true;
                     monsterInfo(sendMessage, monster);
                 }
             });
