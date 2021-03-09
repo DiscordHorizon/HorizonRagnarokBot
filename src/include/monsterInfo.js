@@ -116,10 +116,6 @@ module.exports = {
             },
             {
                 name: "Respawn",
-                value: "Mapas onde o monstro renasce",
-            },
-            {
-                name: "\u200b",
                 value: monster.info.respawn,
             }
         );
